@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Tracking Pixel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Tracking Pixel</h1>
+    
+    <div class="info">
+        <h3>Instrukcje:</h3>
+        <ol>
+            <li>Dodaj do URL: ?utm_source=facebook&utm_campaign=test&fbclid=test123</li>
+            <li>Otwórz Console (F12)</li>
+            <li>Kliknij "Symuluj Zakup"</li>
+        </ol>
+    </div>
+    
+    <button class="button" onclick="simulatePurchase()">Symuluj Zakup</button>
+    
+    <script src="pixel/src/tracking-pixel.js"></script>
+    
+    <script>
+        function simulatePurchase() {
+            const orderId = 'ORD-' + Date.now();
+            
+            window.trackConversion({
+                order_id: orderId,
+                revenue: 99.99,
+                currency: 'USD',
+                email: 'customer@example.com'
+            });
+            
+            alert('Zakup zarejestrowany! Order: ' + orderId);
+        }
+    </script>
+</body>
+</html>
